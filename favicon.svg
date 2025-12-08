@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 外边框：蓝色，线条加粗以适应小尺寸 -->
+  <path d="M50 5L92 27V73L50 95L8 73V27L50 5Z" stroke="#3b82f6" stroke-width="8" fill="none" stroke-linejoin="round"/>
+  
+  <!-- 核心节点：绿色，放大 -->
+  <circle cx="50" cy="50" r="12" fill="#4ade80"/>
+  
+  <!-- 周围节点：蓝色 -->
+  <circle cx="50" cy="25" r="6" fill="#3b82f6"/>
+  <circle cx="28" cy="62" r="6" fill="#3b82f6"/>
+  <circle cx="72" cy="62" r="6" fill="#3b82f6"/>
+</svg>
