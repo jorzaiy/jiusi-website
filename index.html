@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JiuSi Tech .inc | Enterprise AI Agents</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 字体设置：英文用Inter，中文用思源黑体 */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #050505; 
+            color: #e5e5e5; 
+        }
+        body.lang-cn {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+        }
+
+        /* 渐变文字 */
+        .gradient-text {
+            background: linear-gradient(90deg, #4ade80, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* 背景与特效 */
+        .hero-bg {
+            background-image: radial-gradient(circle at 50% 50%, #172033 0%, #050505 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: #4ade80;
+        }
+
+        /* 双语切换逻辑 */
+        /* 默认显示英文，body有 .lang-cn 类时显示中文 */
+        .lang-cn-content { display: none; }
+        body.lang-cn .lang-en-content { display: none; }
+        body.lang-cn .lang-cn-content { display: block; }
+    </style>
+</head>
+<body class="antialiased lang-en"> <!-- 默认 lang-en -->
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold tracking-tighter text-white">JiuSi<span class="text-green-400">.</span>Tech</span>
+                </div>
+                
+                <!-- Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- English Menu -->
+                    <div class="lang-en-content flex space-x-8">
+                        <a href="#solutions" class="hover:text-green-400 text-sm font-medium transition">Solutions</a>
+                        <a href="#philosophy" class="hover:text-green-400 text-sm font-medium transition">Philosophy</a>
+                        <a href="#contact" class="hover:text-green-400 text-sm font-medium transition">Contact</a>
+                    </div>
+                    <!-- Chinese Menu -->
+                    <div class="lang-cn-content space-x-8">
+                        <a href="#solutions" class="hover:text-green-400 text-sm font-medium transition">解决方案</a>
+                        <a href="#philosophy" class="hover:text-green-400 text-sm font-medium transition">设计理念</a>
+                        <a href="#contact" class="hover:text-green-400 text-sm font-medium transition">联系我们</a>
+                    </div>
+
+                    <!-- Language Switcher Button -->
+                    <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1 border border-white/20 rounded-full hover:bg-white/10 transition text-xs font-mono tracking-wider">
+                        <span id="lang-btn-text">CN</span>
+                    </button>
+                    
+                    <!-- CTA -->
+                    <a href="#contact" class="lang-en-content bg-white text-black hover:bg-green-400 hover:text-black px-4 py-2 rounded-full text-sm font-bold transition">
+                        Book Demo
+                    </a>
+                    <a href="#contact" class="lang-cn-content bg-white text-black hover:bg-green-400 hover:text-black px-4 py-2 rounded-full text-sm font-bold transition">
+                        预约演示
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-bg overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <!-- EN Hero -->
+            <div class="lang-en-content">
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                    Thoughtful Intelligence,<br>
+                    <span class="gradient-text">Automated Action.</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
+                    Next-generation AI Agents built on the "Chain of Thought" philosophy. <br>
+                    Perception, Reasoning, and Execution for global enterprises.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#contact" class="px-8 py-3 rounded-full text-black bg-green-400 hover:bg-green-500 font-bold transition">Start Building</a>
+                    <a href="#solutions" class="px-8 py-3 border border-gray-600 rounded-full text-white hover:bg-white/10 transition">Explore Cases</a>
+                </div>
+            </div>
+
+            <!-- CN Hero -->
+            <div class="lang-cn-content">
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+                    君子九思，<br>
+                    <span class="gradient-text">AI 亦然。</span>
+                </h1>
+                <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
+                    基于“思维链”构建的下一代企业级 AI Agents。<br>
+                    赋予数字员工“感知-思考-行动”的完整闭环能力。
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#contact" class="px-8 py-3 rounded-full text-black bg-green-400 hover:bg-green-500 font-bold transition">定制 Agent</a>
+                    <a href="#solutions" class="px-8 py-3 border border-gray-600 rounded-full text-white hover:bg-white/10 transition">探索案例</a>
+                </div>
+            </div>
+
+            <div class="mt-12 text-gray-600 text-xs font-mono tracking-widest">
+                DOMAIN: 991248.XYZ | NODES: SG / HK / LA
+            </div>
+        </div>
+        
+        <!-- Background Elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -z-10 animate-pulse"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl -z-10"></div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-20 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <!-- EN Title -->
+                <div class="lang-en-content">
+                    <h2 class="text-3xl font-bold text-white">The "JiuSi" Methodology</h2>
+                    <p class="mt-4 text-gray-400">Injecting traditional wisdom into modern algorithms.</p>
+                </div>
+                <!-- CN Title -->
+                <div class="lang-cn-content">
+                    <h2 class="text-3xl font-bold text-white">为何选择 JiuSi (九思) ?</h2>
+                    <p class="mt-4 text-gray-400">将传统智慧注入现代算法，打造更严谨的 AI。</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- Card 1 -->
+                <div class="p-6">
+                    <div class="text-4xl mb-4">👁️</div>
+                    <div class="lang-en-content">
+                        <h3 class="text-xl font-bold text-white mb-2">Perception</h3>
+                        <p class="text-gray-400 text-sm">Clear vision of multi-modal data. We process documents, images, and API streams with precision.</p>
+                    </div>
+                    <div class="lang-cn-content">
+                        <h3 class="text-xl font-bold text-white mb-2">视思明 (Perception)</h3>
+                        <p class="text-gray-400 text-sm">精准的多模态数据感知，无论是文档、图像还是 API 数据流，都能清晰洞察。</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="p-6">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <div class="lang-en-content">
+                        <h3 class="text-xl font-bold text-white mb-2">Reasoning</h3>
+                        <p class="text-gray-400 text-sm">Advanced Chain-of-Thought (CoT). Breaking down complex problems before acting.</p>
+                    </div>
+                    <div class="lang-cn-content">
+                        <h3 class="text-xl font-bold text-white mb-2">疑思问 (Reasoning)</h3>
+                        <p class="text-gray-400 text-sm">强大的 Chain-of-Thought 推理能力，遇到复杂问题自动拆解，拒绝幻觉。</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="p-6">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <div class="lang-en-content">
+                        <h3 class="text-xl font-bold text-white mb-2">Action</h3>
+                        <p class="text-gray-400 text-sm">Prudent execution. Secure tool calling and reliable workflow automation.</p>
+                    </div>
+                    <div class="lang-cn-content">
+                        <h3 class="text-xl font-bold text-white mb-2">事思敬 (Action)</h3>
+                        <p class="text-gray-400 text-sm">严谨的任务执行与工具调用，确保每一次自动化操作都安全、可靠。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-white mb-12 lang-en-content">Core Solutions</h2>
+            <h2 class="text-3xl font-bold text-white mb-12 lang-cn-content">核心业务场景</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Solution 1 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-green-400 mb-4 lang-en-content">Enterprise Knowledge Brain</h3>
+                    <h3 class="text-2xl font-bold text-green-400 mb-4 lang-cn-content">企业级知识库 Agent</h3>
+                    
+                    <div class="lang-en-content">
+                        <p class="text-gray-300 mb-4">RAG-based intelligence. Turn your PDFs, Docs, and Slack history into a conversational expert.</p>
+                        <ul class="text-gray-500 text-sm list-disc pl-5 space-y-2">
+                            <li>Internal Staff Training</li>
+                            <li>Technical Doc Retrieval</li>
+                            <li>Compliance Checking</li>
+                        </ul>
+                    </div>
+                    <div class="lang-cn-content">
+                        <p class="text-gray-300 mb-4">基于 RAG 技术，将您公司的 PDF、文档、飞书/钉钉记录转化为可对话的智能大脑。</p>
+                        <ul class="text-gray-500 text-sm list-disc pl-5 space-y-2">
+                            <li>内部员工培训助手</li>
+                            <li>技术文档自动检索</li>
+                            <li>合同合规性审查</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Solution 2 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4 lang-en-content">Workflow Automation</h3>
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4 lang-cn-content">业务流程自动化 Agent</h3>
+
+                    <div class="lang-en-content">
+                        <p class="text-gray-300 mb-4">More than chat. Our Agents call APIs to click buttons, send emails, and update CRMs for you.</p>
+                        <ul class="text-gray-500 text-sm list-disc pl-5 space-y-2">
+                            <li>Lead Qualification & Entry</li>
+                            <li>Automated Reporting</li>
+                            <li>E-commerce Returns Handling</li>
+                        </ul>
+                    </div>
+                    <div class="lang-cn-content">
+                        <p class="text-gray-300 mb-4">不仅仅是聊天。我们的 Agent 可以调用 API，帮您点击按钮、发送邮件、更新 CRM。</p>
+                        <ul class="text-gray-500 text-sm list-disc pl-5 space-y-2">
+                            <li>销售线索自动清洗与录入</li>
+                            <li>自动生成日报/周报</li>
+                            <li>电商客服自动退换货处理</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black border-t border-white/10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            
+            <h2 class="text-3xl font-bold text-white mb-6 lang-en-content">Ready to Deploy Your Workforce?</h2>
+            <h2 class="text-3xl font-bold text-white mb-6 lang-cn-content">准备好部署您的数字员工了吗？</h2>
+
+            <p class="text-gray-400 mb-8 lang-en-content">JiuSi Tech .inc is pushing the boundaries of AI.</p>
+            <p class="text-gray-400 mb-8 lang-cn-content">JiuSi Tech .inc 期待与您共同探索 AI 的边界。</p>
+            
+            <div class="glass-card p-8 rounded-xl inline-block text-left w-full max-w-md">
+                <p class="text-sm text-gray-500 uppercase tracking-widest mb-2">Email</p>
+                <p class="text-xl text-white font-mono mb-4">hello@991248.xyz</p>
+                
+                <p class="text-sm text-gray-500 uppercase tracking-widest mb-2">Global Hubs</p>
+                <div class="flex flex-col space-y-1 text-white">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Singapore
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Hong Kong
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full"></span> Los Angeles
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-gray-600 text-sm">
+                &copy; 2025 JiuSi Tech .inc. All rights reserved. <br>
+                <span class="font-mono">991248.xyz</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleLanguage() {
+            const body = document.body;
+            const btnText = document.getElementById('lang-btn-text');
+            
+            if (body.classList.contains('lang-en')) {
+                // Switch to CN
+                body.classList.remove('lang-en');
+                body.classList.add('lang-cn');
+                btnText.textContent = 'EN'; // Button shows option to switch back
+                document.documentElement.lang = 'zh-CN';
+            } else {
+                // Switch to EN
+                body.classList.remove('lang-cn');
+                body.classList.add('lang-en');
+                btnText.textContent = 'CN'; // Button shows option to switch back
+                document.documentElement.lang = 'en';
+            }
+        }
+    </script>
+</body>
+</html>
