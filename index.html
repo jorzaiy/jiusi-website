@@ -1,9 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JiuSi Tech .inc | Enterprise AI Agents</title>
+    
+    <!-- SEO Optimization Start -->
+    <title>JiuSi Tech .inc | Enterprise AI Agents & Azure Solutions</title>
+    <meta name="description" content="JiuSi Tech provides enterprise-grade AI Agents built on Microsoft Azure. Specialized in RAG Knowledge Bases, Workflow Automation, and LLM development. Headquartered in Singapore.">
+    <meta name="keywords" content="AI Agent, Enterprise AI, JiuSi Tech, Microsoft Azure OpenAI, RAG, Singapore AI Company, 991248.xyz, LLM Development">
+    <meta name="author" content="JiuSi Tech .inc">
+    <link rel="canonical" href="https://www.991248.xyz/" />
+    
+    <!-- Open Graph / Facebook / LinkedIn (社交媒体分享优化) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.991248.xyz/">
+    <meta property="og:title" content="JiuSi Tech - Enterprise AI Agents Built on Azure">
+    <meta property="og:description" content="Deploy your digital workforce. Secure, scalable AI agents for enterprise. Based in Singapore.">
+    <!-- 如果有Logo图片链接，可以填在这里 <meta property="og:image" content="https://www.991248.xyz/og-image.jpg"> -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="JiuSi Tech .inc">
+    <meta property="twitter:description" content="Enterprise AI Agents focused on Perception, Reasoning, and Action.">
+    
+    <!-- Google Structural Data (JSON-LD) - 核心SEO部分 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Corporation",
+      "name": "JiuSi Tech .inc",
+      "alternateName": "九思科技",
+      "url": "https://www.991248.xyz",
+      "logo": "", 
+      "description": "Enterprise AI Agent development company based on Microsoft Azure.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1 Raffles Place #44-01, One Raffles Place",
+        "addressLocality": "Singapore",
+        "postalCode": "048616",
+        "addressCountry": "SG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@991248.xyz",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Chinese"]
+      }
+    }
+    </script>
+    <!-- SEO Optimization End -->
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -12,7 +58,6 @@
             font-family: 'Inter', sans-serif; 
             background-color: #050505; 
             color: #e5e5e5; 
-            scroll-behavior: smooth;
         }
         body.lang-cn { font-family: 'Noto Sans SC', 'Inter', sans-serif; }
 
@@ -38,7 +83,6 @@
             box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
         }
 
-        /* 微软 Azure 风格的小徽章 */
         .tech-badge {
             font-size: 0.7rem;
             padding: 2px 8px;
@@ -63,17 +107,12 @@
             <div class="flex items-center justify-between h-16">
                 <!-- LOGO AREA -->
                 <div class="flex items-center gap-3">
-                    <!-- SVG Logo: 神经芯片 -->
                     <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- 外环 -->
                         <path d="M50 5L92 27V73L50 95L8 73V27L50 5Z" stroke="#3b82f6" stroke-width="2" stroke-linejoin="round"/>
-                        <!-- 内部连接线 -->
                         <path d="M50 25V50M28 62L50 50M72 62L50 50" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-                        <!-- 核心节点 -->
                         <circle cx="50" cy="50" r="6" fill="#4ade80">
                             <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
                         </circle>
-                        <!-- 卫星节点 -->
                         <circle cx="50" cy="25" r="3" fill="#3b82f6"/>
                         <circle cx="28" cy="62" r="3" fill="#3b82f6"/>
                         <circle cx="72" cy="62" r="3" fill="#3b82f6"/>
@@ -94,7 +133,6 @@
                         <a href="#contact" class="hover:text-white text-sm font-medium transition text-gray-400">联系我们</a>
                     </div>
 
-                    <!-- Lang Switcher -->
                     <button onclick="toggleLanguage()" class="flex items-center justify-center px-3 py-1 border border-white/20 rounded-full hover:bg-white/10 transition text-xs font-mono tracking-wider text-gray-300">
                         <span id="lang-btn-text">CN</span>
                     </button>
@@ -112,7 +150,6 @@
     <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 hero-bg overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             
-            <!-- Azure Badge -->
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 mb-8 backdrop-blur-sm">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -121,7 +158,7 @@
                 <span class="text-xs font-mono text-blue-300 tracking-wide uppercase">Powered by Microsoft Azure</span>
             </div>
 
-            <!-- EN Hero (Original "Thoughtful" slogan) -->
+            <!-- EN Hero -->
             <div class="lang-en-content">
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
                     Thoughtful Intelligence,<br>
@@ -133,7 +170,7 @@
                 </p>
             </div>
 
-            <!-- CN Hero (Restored "JiuSi" slogan) -->
+            <!-- CN Hero -->
             <div class="lang-cn-content">
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
                     君子九思，<br>
@@ -157,7 +194,7 @@
             </div>
 
             <div class="mt-12 text-gray-600 text-xs font-mono tracking-widest">
-                DOMAIN: 991248.XYZ | STATUS: SYSTEMS OPERATIONAL
+                DOMAIN: 991248.XYZ | LOCATION: SG / HK / LA
             </div>
         </div>
         
@@ -168,7 +205,7 @@
         </div>
     </section>
 
-    <!-- Tech Architecture Section (Azure Integration) -->
+    <!-- Tech Architecture Section -->
     <section id="architecture" class="py-20 bg-black border-y border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -183,64 +220,37 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tech Card 1: Azure OpenAI -->
+                <!-- Azure OpenAI -->
                 <div class="glass-card p-6 rounded-xl">
-                    <div class="h-10 w-10 bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 text-blue-400 text-xl">
-                        🤖
-                    </div>
+                    <div class="h-10 w-10 bg-blue-900/30 rounded-lg flex items-center justify-center mb-4 text-blue-400 text-xl">🤖</div>
                     <div class="mb-2"><span class="tech-badge">CORE LLM</span></div>
                     <h3 class="text-lg font-bold text-white mb-2">Azure OpenAI Service</h3>
-                    <p class="text-sm text-gray-400 lang-en-content">
-                        Private instances of GPT-4o. Your data is never used to train the public models.
-                    </p>
-                    <p class="text-sm text-gray-400 lang-cn-content">
-                        私有化部署的 GPT-4o 实例。您的企业数据绝不会被用于训练公共模型，确保数据主权。
-                    </p>
+                    <p class="text-sm text-gray-400 lang-en-content">Private GPT-4o instances. Data sovereignty guaranteed.</p>
+                    <p class="text-sm text-gray-400 lang-cn-content">私有化 GPT-4o 实例。数据绝不用于训练，确保数据主权。</p>
                 </div>
-
-                <!-- Tech Card 2: AI Search -->
+                <!-- AI Search -->
                 <div class="glass-card p-6 rounded-xl">
-                    <div class="h-10 w-10 bg-purple-900/30 rounded-lg flex items-center justify-center mb-4 text-purple-400 text-xl">
-                        🔍
-                    </div>
+                    <div class="h-10 w-10 bg-purple-900/30 rounded-lg flex items-center justify-center mb-4 text-purple-400 text-xl">🔍</div>
                     <div class="mb-2"><span class="tech-badge">RAG ENGINE</span></div>
                     <h3 class="text-lg font-bold text-white mb-2">Azure AI Search</h3>
-                    <p class="text-sm text-gray-400 lang-en-content">
-                        High-precision vector retrieval + semantic ranking. Zero hallucinations on business docs.
-                    </p>
-                    <p class="text-sm text-gray-400 lang-cn-content">
-                        高精度向量检索 + 语义重排序。基于您真实文档回答，将大模型“幻觉”降至为零。
-                    </p>
+                    <p class="text-sm text-gray-400 lang-en-content">High-precision vector retrieval. Zero hallucinations.</p>
+                    <p class="text-sm text-gray-400 lang-cn-content">高精度向量检索。基于真实文档回答，拒绝“幻觉”。</p>
                 </div>
-
-                <!-- Tech Card 3: Functions -->
+                <!-- Functions -->
                 <div class="glass-card p-6 rounded-xl">
-                    <div class="h-10 w-10 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 text-yellow-400 text-xl">
-                        ⚡
-                    </div>
+                    <div class="h-10 w-10 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-4 text-yellow-400 text-xl">⚡</div>
                     <div class="mb-2"><span class="tech-badge">SERVERLESS</span></div>
                     <h3 class="text-lg font-bold text-white mb-2">Azure Functions</h3>
-                    <p class="text-sm text-gray-400 lang-en-content">
-                        Event-driven Python backend ensuring high concurrency and instant response globally.
-                    </p>
-                    <p class="text-sm text-gray-400 lang-cn-content">
-                        事件驱动的 Python 后端架构。支持高并发访问，全球节点毫秒级响应。
-                    </p>
+                    <p class="text-sm text-gray-400 lang-en-content">Event-driven Python backend ensuring high concurrency.</p>
+                    <p class="text-sm text-gray-400 lang-cn-content">事件驱动的 Python 后端。支持高并发，毫秒级响应。</p>
                 </div>
-
-                <!-- Tech Card 4: Cosmos DB -->
+                <!-- Cosmos DB -->
                 <div class="glass-card p-6 rounded-xl">
-                    <div class="h-10 w-10 bg-green-900/30 rounded-lg flex items-center justify-center mb-4 text-green-400 text-xl">
-                        💾
-                    </div>
+                    <div class="h-10 w-10 bg-green-900/30 rounded-lg flex items-center justify-center mb-4 text-green-400 text-xl">💾</div>
                     <div class="mb-2"><span class="tech-badge">MEMORY</span></div>
                     <h3 class="text-lg font-bold text-white mb-2">Cosmos DB (vCore)</h3>
-                    <p class="text-sm text-gray-400 lang-en-content">
-                        Vector database for infinite conversation history and contextual memory.
-                    </p>
-                    <p class="text-sm text-gray-400 lang-cn-content">
-                        原生支持向量存储的数据库。赋予 Agent 长期记忆，让它永远记得上下文。
-                    </p>
+                    <p class="text-sm text-gray-400 lang-en-content">Vector database for infinite conversation history.</p>
+                    <p class="text-sm text-gray-400 lang-cn-content">原生向量数据库。赋予 Agent 长期记忆与上下文能力。</p>
                 </div>
             </div>
         </div>
@@ -257,48 +267,33 @@
                 <div class="glass-card p-8 rounded-2xl border-l-4 border-green-500">
                     <h3 class="text-2xl font-bold text-white mb-4 lang-en-content">Smart Knowledge Base</h3>
                     <h3 class="text-2xl font-bold text-white mb-4 lang-cn-content">智能知识库 Agent</h3>
-                    
                     <div class="lang-en-content">
-                        <p class="text-gray-400 mb-4">Stop searching, start asking. Connects to SharePoint, Google Drive, and Notion.</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li>• Automated Employee Onboarding</li>
-                            <li>• Contract Analysis & Risk Detection</li>
-                        </ul>
+                        <p class="text-gray-400 mb-4">Connects to SharePoint, Google Drive, and Notion.</p>
+                        <ul class="space-y-2 text-sm text-gray-500"><li>• Automated Employee Onboarding</li><li>• Contract Analysis</li></ul>
                     </div>
                     <div class="lang-cn-content">
-                        <p class="text-gray-400 mb-4">别再搜索了，直接提问。无缝连接 SharePoint, 飞书文档 和 Notion。</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li>• 员工入职培训自动化</li>
-                            <li>• 合同条款分析与风险检测</li>
-                        </ul>
+                        <p class="text-gray-400 mb-4">无缝连接 SharePoint, 飞书文档 和 Notion。</p>
+                        <ul class="space-y-2 text-sm text-gray-500"><li>• 员工入职培训自动化</li><li>• 合同条款分析</li></ul>
                     </div>
                 </div>
-
                 <!-- Solution 2 -->
                 <div class="glass-card p-8 rounded-2xl border-l-4 border-blue-500">
                     <h3 class="text-2xl font-bold text-white mb-4 lang-en-content">Autonomous Workflow</h3>
                     <h3 class="text-2xl font-bold text-white mb-4 lang-cn-content">全自动业务流 Agent</h3>
-
                     <div class="lang-en-content">
-                        <p class="text-gray-400 mb-4">Agents that can use tools. They browse the web, send emails, and update ERPs.</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li>• Sales Lead Enrichment (CRM)</li>
-                            <li>• 24/7 Multi-lingual Customer Support</li>
-                        </ul>
+                        <p class="text-gray-400 mb-4">Agents that browse web, send emails, and update ERPs.</p>
+                        <ul class="space-y-2 text-sm text-gray-500"><li>• Sales Lead Enrichment (CRM)</li><li>• 24/7 Multi-lingual Support</li></ul>
                     </div>
                     <div class="lang-cn-content">
-                        <p class="text-gray-400 mb-4">会使用工具的 Agent。它们可以联网搜索、发送邮件、并自动更新 ERP 系统。</p>
-                        <ul class="space-y-2 text-sm text-gray-500">
-                            <li>• 销售线索自动清洗与录入 (CRM)</li>
-                            <li>• 7x24小时多语言智能客服</li>
-                        </ul>
+                        <p class="text-gray-400 mb-4">自动联网搜索、发送邮件、并更新 ERP 系统。</p>
+                        <ul class="space-y-2 text-sm text-gray-500"><li>• 销售线索自动清洗 (CRM)</li><li>• 7x24小时多语言客服</li></ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Address -->
     <section id="contact" class="py-20 bg-black border-t border-white/10">
         <div class="max-w-4xl mx-auto px-4 text-center">
             
@@ -306,22 +301,27 @@
             <h2 class="text-3xl font-bold text-white mb-6 lang-cn-content">准备好部署了吗？</h2>
             
             <div class="glass-card p-10 rounded-2xl inline-block text-left w-full max-w-lg relative overflow-hidden">
-                <!-- 装饰背景 -->
                 <div class="absolute -right-10 -top-10 w-32 h-32 bg-green-500/20 rounded-full blur-2xl"></div>
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-                    <div>
-                        <p class="text-xs text-blue-400 font-mono mb-1">CONTACT EMAIL</p>
-                        <a href="mailto:hello@991248.xyz" class="text-2xl text-white font-bold tracking-tight hover:text-green-400 transition">hello@991248.xyz</a>
-                    </div>
+                <div class="mb-8">
+                    <p class="text-xs text-blue-400 font-mono mb-2 tracking-widest uppercase">Contact</p>
+                    <a href="mailto:hello@991248.xyz" class="text-2xl text-white font-bold tracking-tight hover:text-green-400 transition block mb-6">hello@991248.xyz</a>
+                    
+                    <p class="text-xs text-blue-400 font-mono mb-2 tracking-widest uppercase">Headquarters</p>
+                    <address class="text-gray-300 not-italic text-sm leading-relaxed border-l-2 border-gray-700 pl-4">
+                        <span class="text-white font-semibold">JiuSi Tech .inc</span><br>
+                        1 Raffles Place #44-01<br>
+                        One Raffles Place<br>
+                        Singapore 048616
+                    </address>
                 </div>
                 
                 <div class="border-t border-white/10 pt-6">
-                    <p class="text-xs text-gray-500 mb-3 uppercase tracking-widest">Global Operations</p>
-                    <div class="flex gap-6 text-sm text-gray-300">
-                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> Singapore</span>
-                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> Hong Kong</span>
-                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span> Los Angeles</span>
+                    <p class="text-xs text-gray-500 mb-3 uppercase tracking-widest">Global Nodes</p>
+                    <div class="flex gap-4 text-sm text-gray-400 font-mono">
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span> SG</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> HK</span>
+                        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span> LA</span>
                     </div>
                 </div>
             </div>
