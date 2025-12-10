@@ -338,31 +338,55 @@
 function toggleLanguage() {
             const body = document.body;
             const btnText = document.getElementById('lang-btn-text');
-            // 获取聊天窗口标题元素
-            const chatHeader = document.querySelector('.chat-header div span').parentNode; 
-            
-            if (body.classList.contains('lang-en')) {
-                // Switch to CN
+            const chatHeader = document.querySelector('.chat-header div'); // 获取标题区域
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages'); // 获取消息容器
+
+            // 定义双语配置
+            const config = {
+                en: {
+                    btn: 'CN',
+                    langAttr: 'en',
+                    headerHtml: '<span class="chat-status"></span>JiuSi Intern (Beta)',
+                    placeholder: 'Type a message...',
+                    welcome: 'Hello! I am JiuSi Intern. How can I help you today?<br><span style="font-size:12px; color:#888;">(I can introduce our company, but I don\'t do deep stock analysis myself.)</span>'
+                },
+                cn: {
+                    btn: 'EN',
+                    langAttr: 'zh-CN',
+                    headerHtml: '<span class="chat-status"></span>九思实习生 (Beta)',
+                    placeholder: '请输入消息...',
+                    welcome: '你好！我是九思科技的实习生。有什么可以帮您的吗？<br><span style="font-size:12px; color:#888;">(我可以介绍公司业务，但还不敢做复杂的股票分析哦)</span>'
+                }
+            };
+
+            // 判断当前动作
+            let targetLang = body.classList.contains('lang-en') ? 'cn' : 'en';
+            let cfg = config[targetLang];
+
+            // 1. 切换 CSS 类
+            if (targetLang === 'cn') {
                 body.classList.remove('lang-en');
                 body.classList.add('lang-cn');
-                btnText.textContent = 'EN';
-                document.documentElement.lang = 'zh-CN';
-                
-                // 更新聊天标题
-                chatHeader.innerHTML = '<span class="chat-status"></span>九思实习生 (Beta)';
-                document.getElementById('chat-input').placeholder = "请输入消息...";
-                
             } else {
-                // Switch to EN
                 body.classList.remove('lang-cn');
                 body.classList.add('lang-en');
-                btnText.textContent = 'CN';
-                document.documentElement.lang = 'en';
-                
-                // 更新聊天标题
-                chatHeader.innerHTML = '<span class="chat-status"></span>JiuSi Intern (Beta)';
-                document.getElementById('chat-input').placeholder = "Type a message...";
             }
+
+            // 2. 更新 HTML 属性和按钮文本
+            document.documentElement.lang = cfg.langAttr;
+            btnText.textContent = cfg.btn;
+
+            // 3. 更新聊天窗口 UI
+            chatHeader.innerHTML = cfg.headerHtml;
+            chatInput.placeholder = cfg.placeholder;
+
+            // 4. 重置聊天记录并显示新语言的欢迎语 (清空历史，避免语言混乱)
+            chatMessages.innerHTML = ''; 
+            const div = document.createElement('div');
+            div.className = 'message bot';
+            div.innerHTML = cfg.welcome;
+            chatMessages.appendChild(div);
         }
     </script>
 <!-- Chat Widget Start -->
@@ -478,10 +502,10 @@ function toggleLanguage() {
                 <div style="cursor:pointer; color:#666;" onclick="toggleChat()">✕</div>
             </div>
             <div class="chat-messages" id="chat-messages">
-                <div class="message bot">
-                    Hello! 我是九思科技的实习生。有什么可以帮您的吗？<br>
-                    (我可以回答公司介绍，但还不能做复杂的股票分析哦)
-                </div>
+<div class="message bot">
+    Hello! I am JiuSi Intern. How can I help you today?<br>
+    <span style="font-size:12px; color:#888;">(I can introduce our company, but I don't do deep stock analysis myself.)</span>
+</div>
             </div>
             <div class="typing" id="typing-indicator">Intern is thinking...</div>
             <div class="chat-input-area">
