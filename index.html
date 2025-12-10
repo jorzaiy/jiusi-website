@@ -335,19 +335,33 @@
     </section>
 
     <script>
-        function toggleLanguage() {
+function toggleLanguage() {
             const body = document.body;
             const btnText = document.getElementById('lang-btn-text');
+            // 获取聊天窗口标题元素
+            const chatHeader = document.querySelector('.chat-header div span').parentNode; 
+            
             if (body.classList.contains('lang-en')) {
+                // Switch to CN
                 body.classList.remove('lang-en');
                 body.classList.add('lang-cn');
                 btnText.textContent = 'EN';
                 document.documentElement.lang = 'zh-CN';
+                
+                // 更新聊天标题
+                chatHeader.innerHTML = '<span class="chat-status"></span>九思实习生 (Beta)';
+                document.getElementById('chat-input').placeholder = "请输入消息...";
+                
             } else {
+                // Switch to EN
                 body.classList.remove('lang-cn');
                 body.classList.add('lang-en');
                 btnText.textContent = 'CN';
                 document.documentElement.lang = 'en';
+                
+                // 更新聊天标题
+                chatHeader.innerHTML = '<span class="chat-status"></span>JiuSi Intern (Beta)';
+                document.getElementById('chat-input').placeholder = "Type a message...";
             }
         }
     </script>
@@ -483,7 +497,6 @@
     </div>
 
     <script>
-        // --- 这里填你刚才获取的 Azure Function URL ---
         const API_URL = "/api/chat"; 
 
         function toggleChat() {
@@ -495,7 +508,7 @@
             if (e.key === 'Enter') sendMessage();
         }
 
-        async function sendMessage() {
+async function sendMessage() {
             const input = document.getElementById('chat-input');
             const message = input.value.trim();
             if (!message) return;
@@ -506,14 +519,28 @@
             
             // 2. 显示正在输入
             const typing = document.getElementById('typing-indicator');
+            
+            // 获取当前语言 (检测 html 标签的 lang 属性)
+            // 之前的 toggleLanguage 函数会修改 <html lang="en"> 或 <html lang="zh-CN">
+            const currentLang = document.documentElement.lang || 'en';
+            
+            // 根据语言显示不同的 "Thinking..."
+            if (currentLang === 'zh-CN') {
+                typing.textContent = "实习生正在思考...";
+            } else {
+                typing.textContent = "Intern is thinking...";
+            }
             typing.style.display = 'block';
 
             try {
-                // 3. 发送给 Azure Function
+                // 3. 发送给 Azure Function (带上 language 参数)
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message })
+                    body: JSON.stringify({ 
+                        message: message,
+                        language: currentLang //
+                    })
                 });
 
                 const data = await response.json();
@@ -524,11 +551,11 @@
 
             } catch (error) {
                 typing.style.display = 'none';
-                addMessage("连接出了点小问题，请稍后再试。", 'bot');
+                const errorMsg = currentLang === 'zh-CN' ? "连接出了点小问题，请稍后再试。" : "Connection glitch. Please try again.";
+                addMessage(errorMsg, 'bot');
                 console.error(error);
             }
         }
-
         function addMessage(text, sender) {
             const container = document.getElementById('chat-messages');
             const div = document.createElement('div');
