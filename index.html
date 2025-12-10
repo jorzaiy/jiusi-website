@@ -351,5 +351,193 @@
             }
         }
     </script>
+<!-- Chat Widget Start -->
+    <style>
+        /* 聊天球样式 */
+        #chat-widget-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        #chat-bubble {
+            width: 60px;
+            height: 60px;
+            background: #4ade80; /* 极光绿 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+            transition: transform 0.3s ease;
+        }
+        #chat-bubble:hover { transform: scale(1.1); }
+        #chat-bubble svg { width: 30px; height: 30px; fill: black; }
+
+        #chat-window {
+            display: none; /* 默认隐藏 */
+            width: 350px;
+            height: 500px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+        }
+
+        .chat-header {
+            background: #111;
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header h3 { color: white; font-size: 14px; font-weight: bold; margin: 0; }
+        .chat-status { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; display: inline-block; margin-right: 5px; }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        .message.bot { background: #222; color: #ddd; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .message.user { background: #4ade80; color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #333;
+            display: flex;
+            gap: 10px;
+        }
+        #chat-input {
+            flex: 1;
+            background: #111;
+            border: 1px solid #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            outline: none;
+        }
+        #chat-input:focus { border-color: #4ade80; }
+        #send-btn {
+            background: #4ade80;
+            border: none;
+            color: black;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 正在输入动画 */
+        .typing { font-style: italic; color: #666; font-size: 12px; margin-left: 10px; display: none; }
+    </style>
+
+    <div id="chat-widget-container">
+        <!-- 聊天窗口 -->
+        <div id="chat-window">
+            <div class="chat-header">
+                <div><span class="chat-status"></span>JiuSi Intern (Beta)</div>
+                <div style="cursor:pointer; color:#666;" onclick="toggleChat()">✕</div>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message bot">
+                    Hello! 我是九思科技的实习生。有什么可以帮您的吗？<br>
+                    (我可以回答公司介绍，但还不能做复杂的股票分析哦)
+                </div>
+            </div>
+            <div class="typing" id="typing-indicator">Intern is thinking...</div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+                <button id="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+
+        <!-- 悬浮球 -->
+        <div id="chat-bubble" onclick="toggleChat()">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"></path></svg>
+        </div>
+    </div>
+
+    <script>
+        // --- 这里填你刚才获取的 Azure Function URL ---
+        const API_URL = "/api/chat"; 
+
+        function toggleChat() {
+            const window = document.getElementById('chat-window');
+            window.style.display = window.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // 1. 显示用户消息
+            addMessage(message, 'user');
+            input.value = '';
+            
+            // 2. 显示正在输入
+            const typing = document.getElementById('typing-indicator');
+            typing.style.display = 'block';
+
+            try {
+                // 3. 发送给 Azure Function
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                // 4. 显示 AI 回复
+                typing.style.display = 'none';
+                addMessage(data.reply, 'bot');
+
+            } catch (error) {
+                typing.style.display = 'none';
+                addMessage("连接出了点小问题，请稍后再试。", 'bot');
+                console.error(error);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `message ${sender}`;
+            div.innerHTML = text.replace(/\n/g, '<br>'); // 简单换行处理
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight; // 滚动到底部
+        }
+    </script>
+    <!-- Chat Widget End -->
 </body>
 </html>
