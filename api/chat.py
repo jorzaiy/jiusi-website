@@ -76,20 +76,32 @@ class handler(BaseHTTPRequestHandler):
                 "max_tokens": 500
             }
 
-            # 发送给华为/DeepSeek
-            response = requests.post(HUAWEI_ENDPOINT, headers=headers, json=payload, verify=False, timeout=30)
-            
-            if response.status_code == 200:
-                res_json = response.json()
-                reply = res_json.get('choices', [{}])[0].get('message', {}).get('content', "No content returned.")
+            try:
+                # 设置 8 秒超时 (Vercel 极限是 10 秒)
+                # 去掉了 verify=False
+                response = requests.post(HUAWEI_ENDPOINT, headers=headers, json=payload, timeout=8)
                 
-                # 成功返回
-                self.send_response(200)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({"reply": reply}).encode('utf-8'))
-            else:
-                raise Exception(f"Upstream API Error ({response.status_code}): {response.text}")
+                if response.status_code == 200:
+                    res_json = response.json()
+                    reply = res_json.get('choices', [{}])[0].get('message', {}).get('content', "No content.")
+                else:
+                    reply = f"System Notice: My brain (DeepSeek-R1) is running slow today. Error: {response.status_code}"
+
+            except requests.exceptions.Timeout:
+                # 捕获超时，返回预设回复，而不是崩掉
+                if 'zh' in user_lang:
+                    reply = "不好意思，我的云端大脑（DeepSeek-R1）正在深度思考中，Serverless 算力有点跟不上了... \n\n（这也正是我们需要迁移到 Google Cloud 的原因！请查阅 Vision 的报告吧。）"
+                else:
+                    reply = "Oops! My DeepSeek-R1 brain is thinking too hard and timed out on this Serverless function. \n\n(This is exactly why we are migrating to Google Cloud! Please check Vision's reports instead.)"
+            
+            except Exception as api_e:
+                reply = f"API Error: {str(api_e)}"
+
+            # 统一返回成功 (200)，把错误当成对话的一部分
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps({"reply": reply}).encode('utf-8'))
 
         except Exception as e:
             # --- 捕获所有错误并返回给前端，而不是直接崩 500 ---
